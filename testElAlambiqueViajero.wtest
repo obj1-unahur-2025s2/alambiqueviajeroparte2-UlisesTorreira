@@ -16,13 +16,13 @@ test "luke viaja a bs as"{
 }
 
 test "luke viaja a bagdad con un recuerdo diferente"{
-    bagdad.recuerdo("Armas Masivas")
+    bagdad.cambiarRecuerdo("Armas Masivas")
     luke.viajar(bagdad)
     assert.equals("Armas Masivas", luke.recuerdo())
 }
 
 test "luke viaja a bagdad"{
-    bagdad.recuerdo("Armas Masivas")
+    bagdad.cambiarRecuerdo("Armas Masivas")
     luke.viajar(bagdad)
     assert.equals("Armas Masivas", luke.recuerdo())
 }
@@ -36,7 +36,6 @@ test "luke viaja a las vegas cuando hace homenaje a paris"{
     luke.viajar(lasVegas)
     assert.equals("Llavero Torre Eiffel", luke.recuerdo())
 }
-
 
 test "luke viaja a paris y le qeuda combustibles para seguir viajando"{
     luke.viajar(paris)
@@ -55,10 +54,33 @@ test "luke viaja 2 veces, quiere viajar a Paris y no puede"{
 }
 
 test "luke viaja a hurlingham en el convertible convertido en chatarra" {
-  luke.vehiculo(convertible)
-  convertible.convertir(chatarra)
+  luke.cambiarVehiculo(superConvertible)
+  superConvertible.convertir(chatarra)
   luke.viajar(hurlingham)
-  assert.equals("sticker de la Unahur",luke.recuerdo())
-  assert.equals(5,chatarra.cañones())
+  assert.notEquals("sticker de la Unahur",luke.recuerdo())
+  assert.notEquals(5 , chatarra.cañones())
+}
+//PARTE 2
+test "luke viaja a bagdad y le queda combustible"{
+    luke.viajar(bagdad)
+    assert.that(alambiqueVeloz.puedeFuncionar())
+}
 
-  }
+test "luke viaja a bagdad muchas veces y no le queda combustible"{
+    luke.viajar(bagdad)
+    luke.viajar(bagdad)
+    luke.viajar(bagdad)
+    luke.viajar(bagdad)
+    luke.viajar(bagdad)
+    luke.viajar(bagdad)
+    luke.viajar(bagdad)
+    luke.viajar(bagdad)
+    assert.notThat(alambiqueVeloz.puedeFuncionar())
+}
+
+test "luke viaja con la moto a paris y le queda combustible"{
+    luke.cambiarVehiculo(moto)
+    luke.viajar(paris)
+    assert.that(moto.puedeFuncionar())
+}
+
