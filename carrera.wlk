@@ -34,3 +34,4 @@ object inscripcion {
         return inscriptos.max({c=>c.velocidad()})
     }  
 }
+// ESTO ES UN PUSH DE PRUEBA PARA EL PARCIAL DEL 3/10/25
